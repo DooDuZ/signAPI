@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <form id="loginForm" method="post" action="/member/sign-in">
+            <span>아이디 : </span> <input type="text" name = "mid"><br>
+            <span>비밀번호 : </span> <input type="password" name = "mpw"><br>
+            <input type="submit" value="로그인">
+        </form>
+    </div>
+
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+
+        let form = document.querySelector('#loginForm');
+        let formData = new FormData(form);
+
+        console.log(form);
+        console.log(formData);
+        for (let key of formData.keys()) {
+               console.log(key);
+        }
+
+        function login(){
+
+            $.ajax({
+                url : "/member/sign-in",
+                type : "post",
+                data : formData,
+                contentType: "application/json",
+                success : (re)=>{
+                    alert(re);
+                }
+            })
+
+        }
+    </script>
+</body>
+</html>
